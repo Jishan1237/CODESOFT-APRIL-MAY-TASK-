@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Website Landing Page</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2874f0;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .nav-logo {
+            width: 150px;
+            height: 40px;
+            background: url('images/flipkart_logo.png') no-repeat;
+            background-size: contain;
+        }
+
+        .nav-search {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            margin: 0 20px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 5px;
+        }
+
+        .search-select {
+            border: none;
+            background-color: transparent;
+            color: #2874f0;
+            padding: 5px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input {
+            border: none;
+            background-color: transparent;
+            flex: 1;
+            padding: 5px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-icon {
+            background-color: #2874f0;
+            color: white;
+            padding: 5px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            cursor: pointer;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 6px;
+            font-size: 12px;
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            background-image: url('images/flipkart_hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin: 20px;
+            border-radius: 20px;
+        }
+
+        .hero-message {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        /* Shop Section Styles */
+        .shop-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .product {
+            width: calc(33.33% - 20px);
+            background-color: white;
+            margin: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-content {
+            padding: 10px;
+        }
+
+        .product-content p {
+            margin: 5px 0;
+        }
+
+        .product-content button {
+            background-color: #2874f0;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product-content button:hover {
+            background-color: #1e60d5;
+        }
+
+        /* Cart Section Styles */
+        .cart-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .cart-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .cart-item button:hover {
+            background-color: #d32f2f;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2874f0;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content p {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .ok-button {
+            background-color: #2874f0;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ok-button:hover {
+            background-color: #1e60d5;
+        }
+    </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+<nav>
+    <div class="nav-logo"></div>
+    <div class="nav-search">
+        <select class="search-select" onchange="filterProducts()">
+            <option value="All">All</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Fashion">Fashion</option>
+        </select>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search products..." oninput="searchProducts()">
+        <div class="search-icon">&#128269;</div>
+    </div>
+    <div class="cart-icon" onclick="showCart()">
+        <div class="cart-count">0</div>
+        &#128722;
+    </div>
+</nav>
+
+<!-- Flipkart Logo -->
+<div class="flipkart-logo">
+    <img src="C:\Users\shree\Downloads\flipkart-logo-39906.png" alt="Flipkart Logo">
+</div>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-message" style="color: black;">
+        <h1>Welcome to Flipkart</h1>
+        <p>Your one-stop destination for online shopping</p>
+    </div>
+</section>
+
+
+
+
+    <!-- Shop Section -->
+    <section class="shop-section">
+   <!-- Product 1: Samsung TV -->
+<div class="product electronics">
+    <div class="product-image" style="background-image: url('https://th.bing.com/th/id/R.24ea4ba889f5de303e188911c9f24db2?rik=Ir08%2bGlbu9BoZg&riu=http%3a%2f%2fimages.samsung.com%2fis%2fimage%2fsamsung%2fhk-en_UA55JS8000JXZK_017_Silver_silver%3f%24L1-Thumbnail%24&ehk=5Q2OufAHmqe2LuQDen5Rb0f0Vmz0TSTo4ago2h6JERs%3d&risl=&pid=ImgRaw&r=0');"></div>
+    <div class="product-content">
+        <p>Samsung 32 Inch LED HD TV</p>
+        <p>₹15,999</p>
+        <button onclick="addToCart('Samsung 32 Inch LED HD TV', 15999)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 2: Samsung TV -->
+<div class="product electronics">
+    <div class="product-image" style="background-image: url('https://th.bing.com/th/id/R.24ea4ba889f5de303e188911c9f24db2?rik=Ir08%2bGlbu9BoZg&riu=http%3a%2f%2fimages.samsung.com%2fis%2fimage%2fsamsung%2fhk-en_UA55JS8000JXZK_017_Silver_silver%3f%24L1-Thumbnail%24&ehk=5Q2OufAHmqe2LuQDen5Rb0f0Vmz0TSTo4ago2h6JERs%3d&risl=&pid=ImgRaw&r=0');"></div>
+    <div class="product-content">
+        <p>Samsung 43 Inch LED Full HD TV</p>
+        <p>₹27,999</p>
+        <button onclick="addToCart('Samsung 43 Inch LED Full HD TV', 27999)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 3: Samsung TV -->
+<div class="product electronics">
+    <div class="product-image" style="background-image: url('https://th.bing.com/th/id/R.24ea4ba889f5de303e188911c9f24db2?rik=Ir08%2bGlbu9BoZg&riu=http%3a%2f%2fimages.samsung.com%2fis%2fimage%2fsamsung%2fhk-en_UA55JS8000JXZK_017_Silver_silver%3f%24L1-Thumbnail%24&ehk=5Q2OufAHmqe2LuQDen5Rb0f0Vmz0TSTo4ago2h6JERs%3d&risl=&pid=ImgRaw&r=0');"></div>
+    <div class="product-content">
+        <p>Samsung 65 Inch LED 4K UHD TV</p>
+        <p>₹59,999</p>
+        <button onclick="addToCart('Samsung 65 Inch LED 4K UHD TV', 59999)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 4: Samsung TV -->
+<div class="product electronics">
+    <div class="product-image" style="background-image: url('https://th.bing.com/th/id/R.24ea4ba889f5de303e188911c9f24db2?rik=Ir08%2bGlbu9BoZg&riu=http%3a%2f%2fimages.samsung.com%2fis%2fimage%2fsamsung%2fhk-en_UA55JS8000JXZK_017_Silver_silver%3f%24L1-Thumbnail%24&ehk=5Q2OufAHmqe2LuQDen5Rb0f0Vmz0TSTo4ago2h6JERs%3d&risl=&pid=ImgRaw&r=0');"></div>
+    <div class="product-content">
+        <p>Samsung 50 Inch LED 4K UHD TV</p>
+        <p>₹39,999</p>
+        <button onclick="addToCart('Samsung 50 Inch LED 4K UHD TV', 39999)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 5: Samsung TV -->
+<div class="product electronics">
+    <div class="product-image" style="background-image: url('https://th.bing.com/th/id/R.24ea4ba889f5de303e188911c9f24db2?rik=Ir08%2bGlbu9BoZg&riu=http%3a%2f%2fimages.samsung.com%2fis%2fimage%2fsamsung%2fhk-en_UA55JS8000JXZK_017_Silver_silver%3f%24L1-Thumbnail%24&ehk=5Q2OufAHmqe2LuQDen5Rb0f0Vmz0TSTo4ago2h6JERs%3d&risl=&pid=ImgRaw&r=0');"></div>
+    <div class="product-content">
+        <p>Samsung 75 Inch LED 4K UHD TV</p>
+        <p>₹89,999</p>
+        <button onclick="addToCart('Samsung 75 Inch LED 4K UHD TV', 89999)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 6: Samsung TV -->
+<div class="product electronics">
+    <div class="product-image" style="background-image: url('https://th.bing.com/th/id/R.24ea4ba889f5de303e188911c9f24db2?rik=Ir08%2bGlbu9BoZg&riu=http%3a%2f%2fimages.samsung.com%2fis%2fimage%2fsamsung%2fhk-en_UA55JS8000JXZK_017_Silver_silver%3f%24L1-Thumbnail%24&ehk=5Q2OufAHmqe2LuQDen5Rb0f0Vmz0TSTo4ago2h6JERs%3d&risl=&pid=ImgRaw&r=0');"></div>
+    <div class="product-content">
+        <p>Samsung 43 Inch LED 4K UHD TV</p>
+        <p>₹34,999</p>
+        <button onclick="addToCart('Samsung 43 Inch LED 4K UHD TV', 34999)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 7: Samsung TV -->
+<div class="product electronics">
+    <div class="product-image" style="background-image: url('https://th.bing.com/th/id/R.24ea4ba889f5de303e188911c9f24db2?rik=Ir08%2bGlbu9BoZg&riu=http%3a%2f%2fimages.samsung.com%2fis%2fimage%2fsamsung%2fhk-en_UA55JS8000JXZK_017_Silver_silver%3f%24L1-Thumbnail%24&ehk=5Q2OufAHmqe2LuQDen5Rb0f0Vmz0TSTo4ago2h6JERs%3d&risl=&pid=ImgRaw&r=0');"></div>
+    <div class="product-content">
+        <p>Samsung 32 Inch LED HD TV</p>
+        <p>₹17,999</p>
+        <button onclick="addToCart('Samsung 32 Inch LED HD TV', 17999)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 8: Samsung TV -->
+<div class="product electronics">
+    <div class="product-image" style="background-image: url('https://th.bing.com/th/id/R.24ea4ba889f5de303e188911c9f24db2?rik=Ir08%2bGlbu9BoZg&riu=http%3a%2f%2fimages.samsung.com%2fis%2fimage%2fsamsung%2fhk-en_UA55JS8000JXZK_017_Silver_silver%3f%24L1-Thumbnail%24&ehk=5Q2OufAHmqe2LuQDen5Rb0f0Vmz0TSTo4ago2h6JERs%3d&risl=&pid=ImgRaw&r=0');"></div>
+    <div class="product-content">
+        <p>Samsung 40 Inch LED Full HD TV</p>
+        <p>₹32,999</p>
+        <button onclick="addToCart('Samsung 55 Inch QLED 4K UHD TV', 32999)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 9: Samsung TV -->
+<div class="product electronics">
+    <div class="product-image" style="background-image: url('https://th.bing.com/th/id/R.24ea4ba889f5de303e188911c9f24db2?rik=Ir08%2bGlbu9BoZg&riu=http%3a%2f%2fimages.samsung.com%2fis%2fimage%2fsamsung%2fhk-en_UA55JS8000JXZK_017_Silver_silver%3f%24L1-Thumbnail%24&ehk=5Q2OufAHmqe2LuQDen5Rb0f0Vmz0TSTo4ago2h6JERs%3d&risl=&pid=ImgRaw&r=0');"></div>
+    <div class="product-content">
+        <p>Samsung 55 Inch QLED 4K UHD TV</p>
+        <p>₹79,999</p>
+        <button onclick="addToCart('Samsung 55 Inch QLED 4K UHD TV', 79999)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 10: Men's Maroon Solid T-shirt -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/ck/a?!&&p=f49495eb3f99ae46JmltdHM9MTcxMjc5MzYwMCZpZ3VpZD0wYmEwNTZlNC00Njk0LTZjZTctMmVmYS00MmI1NDc5MjZkMTkmaW5zaWQ9NTU3Mg&ptn=3&ver=2&hsh=3&fclid=0ba056e4-4694-6ce7-2efa-42b547926d19&u=a1L2ltYWdlcy9zZWFyY2g_cT1tZW4lMjBmYXNoaW9uJTIwcGljJTIwZG93bmxvYWQlMjBmcmVlJkZPUk09SVFGUkJBJmlkPTJFMDI4N0I0QjFERUVDQkE4N0FDOTI3NjY3NTc0RDc2QkUyRjZBMkY&ntb=1');"></div>
+    <div class="product-content">
+        <p>Men's Maroon Solid T-shirt</p>
+        <p>₹499</p>
+        <button onclick="addToCart('Men\'s Maroon Solid T-shirt', 499)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 11: Women's Peach Solid Bodycon Dress -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/ck/a?!&&p=db7e8806618dd50eJmltdHM9MTcxMjc5MzYwMCZpZ3VpZD0wYmEwNTZlNC00Njk0LTZjZTctMmVmYS00MmI1NDc5MjZkMTkmaW5zaWQ9NTU3Nw&ptn=3&ver=2&hsh=3&fclid=0ba056e4-4694-6ce7-2efa-42b547926d19&u=a1L2ltYWdlcy9zZWFyY2g_cT13b21lbiUyMGZhc2hpb24lMjBwaWMlMjBkb3dubG9hZCUyMGZyZWUmRk9STT1JUUZSQkEmaWQ9MjczQzFGOEJBRjI3NkUwQzlFREQyODlDQjdCNDExRjJDRjE5RDQ0Mw&ntb=1');"></div>
+    <div class="product-content">
+        <p>Women's Peach Solid Bodycon Dress</p>
+        <p>₹899</p>
+        <button onclick="addToCart('Women\'s Peach Solid Bodycon Dress', 899)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 12: Men's Blue Slim Fit Jeans -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/ck/a?!&&p=f49495eb3f99ae46JmltdHM9MTcxMjc5MzYwMCZpZ3VpZD0wYmEwNTZlNC00Njk0LTZjZTctMmVmYS00MmI1NDc5MjZkMTkmaW5zaWQ9NTU3Mg&ptn=3&ver=2&hsh=3&fclid=0ba056e4-4694-6ce7-2efa-42b547926d19&u=a1L2ltYWdlcy9zZWFyY2g_cT1tZW4lMjBmYXNoaW9uJTIwcGljJTIwZG93bmxvYWQlMjBmcmVlJkZPUk09SVFGUkJBJmlkPTJFMDI4N0I0QjFERUVDQkE4N0FDOTI3NjY3NTc0RDc2QkUyRjZBMkY&ntb=1');"></div>
+    <div class="product-content">
+        <p>Men's Blue Slim Fit Jeans</p>
+        <p>₹1899</p>
+        <button onclick="addToCart('Men\'s Blue Slim Fit Jeans', 1899)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 13: Women's Off-White Printed Straight Kurta -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/ck/a?!&&p=db7e8806618dd50eJmltdHM9MTcxMjc5MzYwMCZpZ3VpZD0wYmEwNTZlNC00Njk0LTZjZTctMmVmYS00MmI1NDc5MjZkMTkmaW5zaWQ9NTU3Nw&ptn=3&ver=2&hsh=3&fclid=0ba056e4-4694-6ce7-2efa-42b547926d19&u=a1L2ltYWdlcy9zZWFyY2g_cT13b21lbiUyMGZhc2hpb24lMjBwaWMlMjBkb3dubG9hZCUyMGZyZWUmRk9STT1JUUZSQkEmaWQ9MjczQzFGOEJBRjI3NkUwQzlFREQyODlDQjdCNDExRjJDRjE5RDQ0Mw&ntb=1');"></div>
+    <div class="product-content">
+        <p>Women's Off-White Printed Straight Kurta</p>
+        <p>₹899</p>
+        <button onclick="addToCart('Women\'s Off-White Printed Straight Kurta', 899)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 14: Men's White Sneakers -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/ck/a?!&&p=f49495eb3f99ae46JmltdHM9MTcxMjc5MzYwMCZpZ3VpZD0wYmEwNTZlNC00Njk0LTZjZTctMmVmYS00MmI1NDc5MjZkMTkmaW5zaWQ9NTU3Mg&ptn=3&ver=2&hsh=3&fclid=0ba056e4-4694-6ce7-2efa-42b547926d19&u=a1L2ltYWdlcy9zZWFyY2g_cT1tZW4lMjBmYXNoaW9uJTIwcGljJTIwZG93bmxvYWQlMjBmcmVlJkZPUk09SVFGUkJBJmlkPTJFMDI4N0I0QjFERUVDQkE4N0FDOTI3NjY3NTc0RDc2QkUyRjZBMkY&ntb=1');"></div>
+    <div class="product-content">
+        <p>Men's White Sneakers</p>
+        <p>₹899</p>
+        <button onclick="addToCart('Men\'s White Sneakers', 899)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 15: Women's Pink Printed Georgette Saree -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/ck/a?!&&p=db7e8806618dd50eJmltdHM9MTcxMjc5MzYwMCZpZ3VpZD0wYmEwNTZlNC00Njk0LTZjZTctMmVmYS00MmI1NDc5MjZkMTkmaW5zaWQ9NTU3Nw&ptn=3&ver=2&hsh=3&fclid=0ba056e4-4694-6ce7-2efa-42b547926d19&u=a1L2ltYWdlcy9zZWFyY2g_cT13b21lbiUyMGZhc2hpb24lMjBwaWMlMjBkb3dubG9hZCUyMGZyZWUmRk9STT1JUUZSQkEmaWQ9MjczQzFGOEJBRjI3NkUwQzlFREQyODlDQjdCNDExRjJDRjE5RDQ0Mw&ntb=1');"></div>
+    <div class="product-content">
+        <p>Women's Pink Printed Georgette Saree</p>
+        <p>₹799</p>
+        <button onclick="addToCart('Women\'s Pink Printed Georgette Saree', 799)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 16: Women's Blue Printed Palazzo -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/ck/a?!&&p=db7e8806618dd50eJmltdHM9MTcxMjc5MzYwMCZpZ3VpZD0wYmEwNTZlNC00Njk0LTZjZTctMmVmYS00MmI1NDc5MjZkMTkmaW5zaWQ9NTU3Nw&ptn=3&ver=2&hsh=3&fclid=0ba056e4-4694-6ce7-2efa-42b547926d19&u=a1L2ltYWdlcy9zZWFyY2g_cT13b21lbiUyMGZhc2hpb24lMjBwaWMlMjBkb3dubG9hZCUyMGZyZWUmRk9STT1JUUZSQkEmaWQ9MjczQzFGOEJBRjI3NkUwQzlFREQyODlDQjdCNDExRjJDRjE5RDQ0Mw&ntb=1');"></div>
+    <div class="product-content">
+        <p>Women's Blue Printed Palazzo</p>
+        <p>₹799</p>
+        <button onclick="addToCart('Women\'s Blue Printed Palazzo', 799)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 17: Men's Maroon Solid Casual Shirt -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/images/search?view=detailV2&ccid=0A0TcG4N&id=42C738403B7C53A8BDBE9ACE9EF666AF136DEC8A&thid=OIP.0A0TcG4NRLK3MHezoMR2jwHaEo&mediaurl=https%3a%2f%2fwallpapercave.com%2fwp%2fwp6326114.jpg&exph=1600&expw=2560&q=men+fashion+pic+download+free&simid=608012132548954896&FORM=IRPRST&ck=077D9937701D8799724AE90D715B392D&selectedIndex=8&itb=0');"></div>
+    <div class="product-content">
+        <p>Men's Maroon Solid Casual Shirt</p>
+        <p>₹899</p>
+        <button onclick="addToCart('Men\'s Maroon Solid Casual Shirt', 899)">Add to Cart</button>
+    </div>
+</div>
+
+<!-- Product 18: Women's Striped Crop Top -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/ck/a?!&&p=db7e8806618dd50eJmltdHM9MTcxMjc5MzYwMCZpZ3VpZD0wYmEwNTZlNC00Njk0LTZjZTctMmVmYS00MmI1NDc5MjZkMTkmaW5zaWQ9NTU3Nw&ptn=3&ver=2&hsh=3&fclid=0ba056e4-4694-6ce7-2efa-42b547926d19&u=a1L2ltYWdlcy9zZWFyY2g_cT13b21lbiUyMGZhc2hpb24lMjBwaWMlMjBkb3dubG9hZCUyMGZyZWUmRk9STT1JUUZSQkEmaWQ9MjczQzFGOEJBRjI3NkUwQzlFREQyODlDQjdCNDExRjJDRjE5RDQ0Mw&ntb=1');"></div>
+    <div class="product-content">
+        <p>Women's Striped Crop Top</p>
+        <p>₹599</p>
+        <button onclick="addToCart('Women\'s Striped Crop Top', 599)">Add to Cart</button>
+    </div>
+</div>
+
+
+<!-- Product 19: Women's Top -->
+<div class="product fashion">
+    <div class="product-image" style="background-image: url('https://www.bing.com/ck/a?!&&p=db7e8806618dd50eJmltdHM9MTcxMjc5MzYwMCZpZ3VpZD0wYmEwNTZlNC00Njk0LTZjZTctMmVmYS00MmI1NDc5MjZkMTkmaW5zaWQ9NTU3Nw&ptn=3&ver=2&hsh=3&fclid=0ba056e4-4694-6ce7-2efa-42b547926d19&u=a1L2ltYWdlcy9zZWFyY2g_cT13b21lbiUyMGZhc2hpb24lMjBwaWMlMjBkb3dubG9hZCUyMGZyZWUmRk9STT1JUUZSQkEmaWQ9MjczQzFGOEJBRjI3NkUwQzlFREQyODlDQjdCNDExRjJDRjE5RDQ0Mw&ntb=1');"></div>
+    <div class="product-content">
+        <p>Women's Striped Crop Top</p>
+        <p>₹599</p>
+        <button onclick="addToCart('Women\'s Striped Crop Top', 599)">Add to Cart</button>
+    </div>
+</div>
+
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <h2>Cart</h2>
+        <div id="cart-items">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <div class="total" id="cart-total">Total: ₹0</div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Flipkart Pvt. Ltd. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#" onclick="showTerms()">Terms of Use</a>
+            <a href="#" onclick="showPrivacyPolicy()">Privacy Policy</a>
+            <a href="#" onclick="showContact()">Contact Us</a>
+        </div>
+    </footer>
+
+    <!-- Terms of Use Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('termsModal')">&times;</span>
+            <h2>Terms of Use</h2>
+            <p>These are the terms of use:-Welcome to flipkart! These terms govern your use of our website and services. By accessing or using our website, you agree to be bound by these terms. If you do not agree to these terms, please do not use our website.
+
+
+Account Creation: You may need to create an account to access certain features of our website. You agree to provide accurate and complete information when creating an account and to keep your login credentials secure.
+
+
+Ordering and Payment: By placing an order through our website, you agree to pay the specified price for the products or services ordered. We reserve the right to refuse or cancel orders at any time for any reason.
+
+
+Shipping and Delivery: We will make every effort to deliver your order in a timely manner. However, we are not responsible for delays caused by factors beyond our control, such as weather or carrier issues.
+
+Returns and Refunds: We accept returns within a specified period for eligible products. Refunds will be issued in accordance with our refund policy.
+
+
+Intellectual Property: All content on our website, including text, images, logos, and trademarks, is the property of flipkartand protected by copyright laws.
+
+
+Limitation of Liability: We are not liable for any damages arising from your use of our website or services, including but not limited to direct, indirect, incidental, or consequential damages.
+
+
+Governing Law: These terms are governed by the laws of India, and any disputes will be resolved in the courts of India.</p>
+            <button class="ok-button" onclick="closeModal('termsModal')">OK</button>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyPolicyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('privacyPolicyModal')">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>This is the privacy policy:-Privacy Policy:
+
+At flipkart, we are committed to protecting your privacy. This privacy policy outlines how we collect, use, and protect your personal information.
+
+Information We Collect: We may collect personal information such as your name, email address, shipping address, and payment information when you interact with our website or place an order.
+
+How We Use Your Information: We use your information to process orders, communicate with you, and improve our products and services. We may also use your information to send promotional emails or newsletters.
+
+Data Security: We take measures to protect your personal information from unauthorized access, disclosure, or alteration. However, no method of transmission over the internet or electronic storage is 100% secure.
+
+Third-Party Services: We may use third-party services such as payment processors or shipping companies to facilitate our services. These third parties have their own privacy policies and may collect additional information.
+
+Cookies: We use cookies to enhance your experience on our website and analyze user behavior. You can choose to disable cookies in your browser settings, but this may affect the functionality of our website.
+
+Updates to Privacy Policy: We may update our privacy policy from time to time. Any changes will be posted on this page, and your continued use of our website constitutes acceptance of the updated policy.</p>
+            <button class="ok-button" onclick="closeModal('privacyPolicyModal')">OK</button>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h2>Contact Us:-</h2>
+            <p>Here is our contact information:-
+            Address:-MS road,madhav nagar,Delhi.
+            Email:-company@gmail.com.</p>
+            <button class="ok-button" onclick="closeModal('contactModal')">OK</button>
+        </div>
+    </div>
+
+    <script>
+        var cartItems = [];
+
+        function addToCart(name, price) {
+    cartItems.push({ name: name, price: price });
+    updateCart();
+}
+
+
+        function removeItem(index) {
+            cartItems.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            var cartList = document.getElementById('cart-items');
+            var totalElement = document.getElementById('cart-total');
+            var cartCount = document.querySelector('.cart-count');
+            var total = 0;
+
+            // Clear previous items
+            cartList.innerHTML = '';
+
+            // Add items to the cart
+            cartItems.forEach(function(item, index) {
+                var itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item');
+                itemElement.innerHTML = `
+                    <span>${item.name}</span>
+                    <span>₹${item.price}</span>
+                    <button onclick="removeItem(${index})">Remove</button>
+                `;
+                cartList.appendChild(itemElement);
+                total += item.price;
+            });
+
+            // Update total
+            totalElement.textContent = `Total: ₹${total}`;
+            // Update cart count
+            cartCount.textContent = cartItems.length;
+        }
+
+        function filterProducts() {
+            var selectedCategory = document.querySelector('.search-select').value;
+            var products = document.querySelectorAll('.product');
+
+            products.forEach(function(product) {
+                if (selectedCategory === 'All') {
+                    product.style.display = 'block';
+                } else {
+                    if (product.classList.contains(selectedCategory.toLowerCase())) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        function searchProducts() {
+            var searchInput = document.getElementById('searchInput').value.toLowerCase();
+            var products = document.querySelectorAll('.product');
+
+            products.forEach(function(product) {
+                var productName = product.querySelector('.product-content p').textContent.toLowerCase();
+                if (productName.includes(searchInput)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function showCart() {
+            document.querySelector('.cart-section').style.display = 'block';
+        }
+
+        function showTerms() {
+            document.getElementById('termsModal').style.display = 'block';
+        }
+
+        function showPrivacyPolicy() {
+            document.getElementById('privacyPolicyModal').style.display = 'block';
+        }
+
+        function showContact() {
+            document.getElementById('contactModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
+
+
