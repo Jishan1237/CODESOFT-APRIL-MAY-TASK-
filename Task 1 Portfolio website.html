@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio Website</title>
+<style>
+/* Reset Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header, footer {
+  background-color: #5E98E9;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+section {
+  padding: 50px 0;
+}
+
+h1, h2, h3 {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.project {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.project img {
+  width: 300px;
+  margin-right: 20px;
+}
+
+.project-info {
+  flex-grow: 1;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+a:hover {
+  background-color: #ccc;
+}
+
+.contact-info {
+  margin-top: 20px;
+}
+
+.contact-info p {
+  margin-bottom: 10px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #5E98E9;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #4682B4;
+}
+
+.clock {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.skill-group {
+  margin-bottom: 30px;
+}
+
+.skill-group h3 {
+  margin-bottom: 10px;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skill-list li {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .skill-list li {
+    width: 100%;
+  }
+}
+
+/* Additional Styles for Enhancement */
+header h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+header p {
+  font-size: 18px;
+}
+
+section {
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 40px;
+}
+
+.project-info {
+  border-left: 2px solid #333;
+  padding-left: 20px;
+}
+
+.project-info h3 {
+  font-size: 24px;
+}
+
+.project-info p {
+  font-size: 16px;
+}
+
+.project-info a {
+  background-color: #5E98E9;
+  color: #fff;
+}
+
+.project-info a:hover {
+  background-color: #4682B4;
+}
+
+.btn {
+  background-color: #5E98E9;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: #4682B4;
+}
+
+footer p {
+  font-size: 14px;
+}
+
+.about-image {
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 200px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+}
+
+.skill-group {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.skill-list li {
+  margin-right: 20px;
+  margin-bottom: 10px;
+  padding: 8px 16px;
+  background-color: #ddd;
+  border-radius: 20px;
+}
+
+.project-info a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.project-info a:hover {
+  background-color: #4682B4;
+}
+
+.contact-info p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form input[type="submit"] {
+  background-color: #5E98E9;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-form input[type="submit"]:hover {
+  background-color: #4682B4;
+}
+
+
+.container {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  color: #fff;
+}
+
+.overlay-content h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.overlay-content p {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.overlay-content a {
+  display: inline-block;
+  background-color: #fff;
+  color: #333;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.overlay-content a:hover {
+  background-color: #ccc;
+}
+
+
+.section-bg {
+  background-color: #f5f5f5;
+  padding: 40px 0;
+  border-radius: 10px;
+}
+
+.section-title {
+  color: #333;
+}
+
+.skill-list li {
+  color: #333;
+  background-color: #f0f0f0;
+}
+
+.project {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.project img {
+  transition: transform 0.3s ease;
+}
+
+.project:hover img {
+  transform: scale(1.05);
+}
+
+/* Placeholder Image Styles */
+.placeholder-image {
+  background-image: url('https://picsum.photos/300/200');
+  background-size: cover;
+  background-position: center;
+  width: 300px;
+  height: 200px;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1 style="color: #FF6347;">Jishan Pathan</h1>
+    <p style="color: #8A2BE2;">Web Developer & Designer</p>
+   
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="about">
+  <div class="container">
+    <h2 style="color: #20B2AA;">About Me</h2>
+    <img src="C:\Users\shree\Downloads\IMG_20230923_121648.jpg" alt="John Doe" class="about-image">
+    <p>I'm a passionate web developer and designer with experience in creating modern, responsive websites. I specialize in HTML, CSS, JavaScript, and various web frameworks including various types of back end languages also.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <h2 style="color: #4682B4;">Skills</h2>
+    <div class="skill-group">
+      <h3 style="color: #32CD32;">Frontend Development</h3>
+      <ul class="skill-list">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>Responsive Design</li>
+        <li>Bootstrap</li>
+        <li>jQuery</li>
+        <li>Angular</li>
+        <li>React</li>
+        <li>Vue.js</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3 style="color: #FFA500;">Backend Development</h3>
+      <ul class="skill-list">
+        <li>Node.js</li>
+        <li>Express</li>
+        <li>PHP</li>
+        <li>Laravel</li>
+        <li>SQL</li>
+        <li>MongoDB</li>
+        <li>RESTful APIs</li>
+      </ul>
+    </div>
+    
+    <div class="skill-group">
+      <h3 style="color: #9370DB;">Other Skills</h3>
+      <ul class="skill-list">
+        <li>Git/GitHub</li>
+        <li>UI/UX Design</li>
+        <li>Photoshop</li>
+        <li>SEO</li>
+        <li>Illustrator</li>
+        <li>WordPress</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 style="color: #FF4500;">Projects</h2>
+    <div class="project">
+      <div class="placeholder-image"></div>
+      <div class="project-info">
+        <h3 style="color: #4169E1;">Movie Recommendation System</h3>
+        <p>THIS IS A MOVIE RECOMMENDATION SYSTEM BASED ON PRINCIPLES OF DATA SCIENCE,MACHINE LEARNING AND DEEP LEARNING THAT RECOMMEND BEST MOVIES WITH AN ACCURACY OF 99%.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+    <div class="project">
+      <div class="placeholder-image"></div>
+      <div class="project-info">
+        <h3 style="color: #9932CC;">Portfolio Website</h3>
+        <p>THIS WEBSITE IS CREATED USING HTML,CSS AND JAVASCRIPT TO SHOW MY PORTFOLIO.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+  
+  </div>
+</section>
+
+<section id="resume">
+  <div class="container">
+    <h2 style="color: #20B2AA;">Resume</h2>
+    <p>Download my resume <a href="resume.pdf" download class="btn">here</a>.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 style="color: #FF6347;">Contact Me</h2>
+    <div class="contact-info">
+      <p>Email: jishan@example.com</p>
+      <p>Phone: +9864534443(This is a hypothetical number)</p>
+      <p>Location:Jaipur,Rajasthan,India</p>
+    </div>
+    <!-- Add a contact form -->
+    <form id="contact-form" class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="color: #FFA500;">&copy; 2024 John Doe. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="clock" id="clock"></div>
+
+<script>
+// Smooth scrolling
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+
+        window.scrollTo({
+            top: target.offsetTop,
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Clock functionality
+function updateTime() {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const formattedHours = hours % 12 || 12;
+  const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+  const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+  const day = now.toLocaleString('en-us', { weekday: 'long' });
+  const date = now.toLocaleDateString('en-US');
+  document.getElementById('clock').innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${ampm}<br>${day}, ${date}`;
+}
+
+updateTime();
+setInterval(updateTime, 1000);
+</script>
+
+</body>
+</html>
